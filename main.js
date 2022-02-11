@@ -1,7 +1,8 @@
 console.log('javascript connected')
 
 const form = document.querySelector('#form')
-
+const resultContainer = document.querySelector('#results-container')
+const audioPreviewUrl = ""
 
 form.addEventListener("submit", function (event) {
     event.preventDefault()
@@ -24,7 +25,7 @@ form.addEventListener("submit", function (event) {
                 console.log('the artist name is', data.results[i].artistName)
                 document.querySelector('#results-div').innerHTML += `
                     <div class="column is-one-quarter">
-                        <div class="card">
+                        <div class="card" id="result-card">
                             <div class="card-image">
                                 <figure class="image">
                                     <img src="${data.results[i].artworkUrl100}">                
@@ -37,7 +38,7 @@ form.addEventListener("submit", function (event) {
                                     <span class="icon">
                                         <i class="fas fa-music"></i>
                                     </span>
-                                    <span><a href="">Play preview</a></span>     
+                                    <span><a href="${data.results[i].previewUrl}">Play preview</a></span>     
                                 </span>
                             </div>
                         </div>
@@ -45,6 +46,16 @@ form.addEventListener("submit", function (event) {
                 `
             }
         })
+})
+
+resultContainer.addEventListener("click", function(event) {
+    event.preventDefault()
+    console.log(event.target)
+    console.log('Card was clicked, get ready to play!')
+    if(event.target.tagName === 'A') {
+        console.log("it is an a!!!")
+        document.getElementById("player").src = event.target.href
+    }
 })
 
 // https://itunes.apple.com/seartch?term=jack+johnson&limit=1
