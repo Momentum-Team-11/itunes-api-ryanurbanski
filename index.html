@@ -18,20 +18,19 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title is-1">Really Awesome Music Site</h1>
-                <h2 class="subtitle is-4">Preview your favorites from i-Tunes!</h2>
             </div>
         </div>
     </section>
 
     <!-- Now Playing -->
-    <section class="section is-small">
-        <h2 class="subtitle">Now playing:</h2>
+    <section class="section columns is-small">
+        <h2 class="subtitle column is-three-fifths">Now playing:</h2>
     </section>
 
     <!-- Search Bar -->
     <div class="block">
         <field class="field has-addons is-grouped is-grouped-centered is-large">
-            <p class="control is-wide">
+            <p class="control">
                 <input type="text" class="input is-info" placeholder="Search for Artist">
             </p>
             <p class="control">
@@ -42,7 +41,20 @@
 
     <!-- Search Results -->
     <div class="container">
-        <h1 class="title is-primary"> Results </h1>
+        <h1 class="title is-primary is-4"> Search Results </h1>
+    </div>
+
+    <!-- Cards -->
+    <div class="card">
+        <div class="card-image">
+            <figure class="image ">
+                <img src="">                            <!--Add the image from iTunes API later-->
+            </figure>
+        </div>
+        <div class="card-content">
+            <p class="subtitle is-5">Song Title</p>         <!-- Add Title from javascript -->
+            <p class="title is-4">Band Name</p>             <!-- Add Band Name from javascript -->
+        </div>
     </div>
 
 </body>
