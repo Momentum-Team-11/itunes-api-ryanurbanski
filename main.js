@@ -9,7 +9,7 @@ form.addEventListener("submit", function(event){
     const formData = new FormData(event.target)
     const asString = new URLSearchParams(formData).toString('');
     console.log(asString)
-    let url = (`https://itunes.apple.com/search?${asString}&entity=song&limit=1`)
+    let url = (`https://itunes.apple.com/search?${asString}&entity=song&limit=20`)
     
     fetch(url)
         .then(function (response) {
@@ -22,7 +22,21 @@ form.addEventListener("submit", function(event){
             for (let i = 0; i < data.results.length; i++) {
                 console.log('the value of i is:', i)
                 console.log('the artist name is', data.results[i].artistName)
-                document.querySelector('#results-div').innerHTML += `<div>${data.results[i].artistName}</div>`
+                document.querySelector('#results-div').innerHTML += `
+                    <div class="column is-one-quarter">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image">
+                                    <img src="${data.results[i].artworkUrl100}">                
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <p class="subtitle is-5">${data.results[i].artistName}</p> 
+                                <p class="title is-4">${data.results[i].trackName}</p> <!-- Add Band Name from javascript -->
+                            </div>
+                        </div>
+                    </div>
+                `
             }
         })
 }) 
