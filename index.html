@@ -24,84 +24,52 @@
     </section>
 
     <!-- Now Playing -->
-    <section class="section columns is-small">
-        <h2 class="subtitle column is-three-fifths">Now playing:</h2>
+    <section class="section">
+        <h2 class="subtitle"><strong>Now playing:</strong></h2>
     </section>
 
     <!-- Search Bar -->
-    <div class="block">
-        <field class="field has-addons is-grouped is-grouped-centered is-large">
-            <p class="control">
-                <input type="text" class="input is-info" placeholder="Search for Artist">
-            </p>
-            <p class="control">
-                <a href="" class="button is-info">Search</a>
-            </p>
-        </field>
-    </div>
+    <!-- <div class="container" id="search-container"> -->
+        <!-- <div class="field has-addons is-grouped is-grouped-centered is-large"> -->
+            <!-- <input type="text" class="input is-info" id="search-input" placeholder="Search for Artist"> -->
+            <!-- <a href="" type="submit" id="search-button" class="button is-info">Search</a> -->
+        <!-- </div> -->
+    <!-- </div> -->
+    
+
+    <form action="/" method="get" id="form">
+        <div class="form">
+            <label for="searchBox">Search: </label>
+            <input type="term" name="term" id="searchBox" required>
+        </div>
+        <button type="submit">Search</button>
+    </form>
 
     <!-- Search Results -->
-    <div class="container">
-        <h2 class="title is-primary is-4"> Search Results </h2>
-    </div>
+    <div class="container" id="results-container">
+        
+        <!-- Results Header  -->
+        <div class="container">
+            <h2 class="title is-primary is-4"> Search Results </h2>
+        </div>
 
-    <!-- Cards -->
-    <div class="card-grid-container" id="cards">
-        <div class="card">
-            <div class="card-image">
-                <figure class="image ">
-                    <img src="">                <!--Add the image from iTunes API later-->
-                </figure>
-            </div>
-            <div class="card-content">
-                <p class="subtitle is-5">Song Title</p> <!-- Add Title from javascript -->
-                <p class="title is-4">Band Name</p> <!-- Add Band Name from javascript -->
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image">
-                <figure class="image ">
-                    <img src="">                <!--Add the image from iTunes API later-->
-                </figure>
-            </div>
-            <div class="card-content">
-                <p class="subtitle is-5">Song Title</p> <!-- Add Title from javascript -->
-                <p class="title is-4">Band Name</p> <!-- Add Band Name from javascript -->
+        <!-- Results Box -->
+        <div class="columns is-multiline">
+            <div class="column is-one-quarter">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image">
+                            <img src="/jackPic.jpeg">                <!--Add the image from iTunes API later-->
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <p class="subtitle is-5">Song Title</p> <!-- Add Title from javascript -->
+                        <p class="title is-4">Band Name</p> <!-- Add Band Name from javascript -->
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="card">
-            <div class="card-image">
-                <figure class="image ">
-                    <img src="">                <!--Add the image from iTunes API later-->
-                </figure>
-            </div>
-            <div class="card-content">
-                <p class="subtitle is-5">Song Title</p> <!-- Add Title from javascript -->
-                <p class="title is-4">Band Name</p> <!-- Add Band Name from javascript -->
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image">
-                <figure class="image ">
-                    <img src="">                <!--Add the image from iTunes API later-->
-                </figure>
-            </div>
-            <div class="card-content">
-                <p class="subtitle is-5">Song Title</p> <!-- Add Title from javascript -->
-                <p class="title is-4">Band Name</p> <!-- Add Band Name from javascript -->
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image">
-                <figure class="image ">
-                    <img src="">                <!--Add the image from iTunes API later-->
-                </figure>
-            </div>
-            <div class="card-content">
-                <p class="subtitle is-5">Song Title</p> <!-- Add Title from javascript -->
-                <p class="title is-4">Band Name</p> <!-- Add Band Name from javascript -->
-            </div>
-        </div>
+    
     </div>
 
 </body>
