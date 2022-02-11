@@ -3,14 +3,14 @@ console.log('javascript connected')
 const form = document.querySelector('#form')
 
 
-form.addEventListener("submit", function(event){
+form.addEventListener("submit", function (event) {
     event.preventDefault()
     console.log('Button was clicked!')
     const formData = new FormData(event.target)
     const asString = new URLSearchParams(formData).toString('');
     console.log(asString)
     let url = (`https://itunes.apple.com/search?${asString}&entity=song&limit=20`)
-    
+
     fetch(url)
         .then(function (response) {
             console.log(response)
@@ -32,13 +32,19 @@ form.addEventListener("submit", function(event){
                             </div>
                             <div class="card-content">
                                 <p class="subtitle is-5">${data.results[i].artistName}</p> 
-                                <p class="title is-4">${data.results[i].trackName}</p> <!-- Add Band Name from javascript -->
+                                <p class="title is-4">${data.results[i].trackName}</p> 
+                                <span class="icon-text">
+                                    <span class="icon">
+                                        <i class="fas fa-music"></i>
+                                    </span>
+                                    <span><a href="">Play preview</a></span>     
+                                </span>
                             </div>
                         </div>
                     </div>
                 `
             }
         })
-}) 
+})
 
 // https://itunes.apple.com/seartch?term=jack+johnson&limit=1
