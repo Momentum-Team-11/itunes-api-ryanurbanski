@@ -1,0 +1,12 @@
+.card-grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap:4%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+h2 {
+    padding:20px;
+    margin-left: 5%;
+}
