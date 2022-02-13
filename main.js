@@ -14,7 +14,7 @@ form.addEventListener("submit", function (event) {
     
     const searchString = document.getElementById("searchBox").value
     console.log(searchString);
-    document.getElementById("resultsHeaderLabel").innerHTML = "Search Results for: '" + searchString + "' "
+    document.getElementById("resultsHeaderLabel").innerHTML = "Search Results for: '" + searchString + "' ";
 
     const formData = new FormData(event.target)
     console.log(formData);
