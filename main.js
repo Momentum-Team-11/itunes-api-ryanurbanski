@@ -6,24 +6,36 @@ const audioPreviewUrl = ""
 
 form.addEventListener("submit", function (event) {
     event.preventDefault()
+
+    
+    
     console.log('Button was clicked!')
+    console.log('The value of event.target is: ', event.target)
+    
+    const searchString = document.getElementById("searchBox").value
+    console.log(searchString);
+    document.getElementById("resultsHeaderLabel").innerHTML = "Search Results for: '" + searchString + "' "
+
     const formData = new FormData(event.target)
+    console.log(formData);
     const asString = new URLSearchParams(formData).toString('');
     console.log(asString)
     let url = (`https://proxy-itunes-api.glitch.me/search?${asString}&entity=song&limit=20`)
 
+                // Clear previous results
+                document.querySelector('#results-div').innerHTML = ""
+
+
     fetch(url)
-        .then(function (response) {
-            console.log(response)
-            return response.json()
-        })
+        .then((response) => response.json())
+        // .then(function (response) {
+        //     console.log(response)
+        //     return response.json()
+        // })
         .then(function (data) {
             console.log(data)
 
             for (let i = 0; i < data.results.length; i++) {
-                // Clear previous results
-                document.querySelector('#results-div').innerHTML += ""
-
                 document.querySelector('#results-div').innerHTML += `
                     <div class="column is-one-quarter">
                         <div class="card" id="result-card">
@@ -47,7 +59,11 @@ form.addEventListener("submit", function (event) {
                 `
             }
         })
+        
+        // Reset the form for the next search
+        form.reset()
 })
+
 
 resultContainer.addEventListener("click", function(event) {
     event.preventDefault()
