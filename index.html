@@ -25,21 +25,31 @@
 
     <!-- Now Playing -->
     <section class="section">
-        <h2 class="subtitle"><strong>Now playing:</strong></h2>
-        <audio src="" id="player" controls></audio>
+        <div class="container">
+            <div class="columns">
+                <audio class="column is-one-third"src="" id="player" controls autoplay></audio>
+                <h2 class="subtitle column is-two-third " id="now-playing"><strong class="has-text-info-dark">Now playing:</strong></h2>
+            </div>
+        </div>
     </section>
 
     <!-- Functional Search -->
     <form action="/" method="get" class="container" id="form">
-        <div class="form">
-            <label for="searchBox"></label>
-            <input type="term" name="term" class="input is-info" id="searchBox" required>
+        <div class="columns">
+            <div class="column is-half">
+                <div class="form">
+                    <label for="searchBox"></label>
+                    <input type="term" name="term" class="input is-info" id="searchBox" required>
+                </div>
+            </div>
+            <div class="column is-one-third">
+                <button type="submit" class="button is-info">Search</button>
+            </div>
         </div>
-        <button type="submit" class="button is-info">Search</button>
     </form>
 
     <!-- Search Results -->
-    <div class="container" id="results-container">
+    <div class="container mt-5" id="results-container">
         
         <!-- Results Header  -->
         <div class="container">

@@ -10,7 +10,7 @@ form.addEventListener("submit", function (event) {
     const formData = new FormData(event.target)
     const asString = new URLSearchParams(formData).toString('');
     console.log(asString)
-    let url = (`https://itunes.apple.com/search?${asString}&entity=song&limit=20`)
+    let url = (`https://proxy-itunes-api.glitch.me/search?${asString}&entity=song&limit=20`)
 
     fetch(url)
         .then(function (response) {
@@ -26,8 +26,8 @@ form.addEventListener("submit", function (event) {
                 document.querySelector('#results-div').innerHTML += `
                     <div class="column is-one-quarter">
                         <div class="card" id="result-card">
-                            <div class="card-image">
-                                <figure class="image">
+                            <div class="card-image has-text-centered">
+                                <figure class="image is-128x128 is-inline-block mt-5">
                                     <img src="${data.results[i].artworkUrl100}">                
                                 </figure>
                             </div>
@@ -38,7 +38,7 @@ form.addEventListener("submit", function (event) {
                                     <span class="icon">
                                         <i class="fas fa-music"></i>
                                     </span>
-                                    <span><a href="${data.results[i].previewUrl}">Play preview</a></span>     
+                                    <span><a href="${data.results[i].previewUrl}" id="${data.results[i].trackId}">Play preview</a></span>     
                                 </span>
                             </div>
                         </div>
@@ -50,12 +50,27 @@ form.addEventListener("submit", function (event) {
 
 resultContainer.addEventListener("click", function(event) {
     event.preventDefault()
-    console.log(event.target)
-    console.log('Card was clicked, get ready to play!')
-    if(event.target.tagName === 'A') {
-        console.log("it is an a!!!")
-        document.getElementById("player").src = event.target.href
-    }
+
+    let songId = event.target.id
+    let url = (`https://proxy-itunes-api.glitch.me/lookup?id=${songId}`)
+
+    fetch(url)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (data) {
+            let artistName = data.results[0].artistName
+            let songName = data.results[0].trackName
+
+            if(event.target.tagName === 'A') {
+                console.log("The link to play was clicked.")
+                document.getElementById("player").src = event.target.href
+                document.getElementById("now-playing").innerHTML += `
+                    <strong>${songName}</strong>
+                    <text> - ${artistName}</text>
+                `
+            }
+        })
 })
 
 // https://itunes.apple.com/seartch?term=jack+johnson&limit=1
