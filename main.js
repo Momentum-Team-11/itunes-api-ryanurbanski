@@ -21,8 +21,9 @@ form.addEventListener("submit", function (event) {
             console.log(data)
 
             for (let i = 0; i < data.results.length; i++) {
-                console.log('the value of i is:', i)
-                console.log('the artist name is', data.results[i].artistName)
+                // Clear previous results
+                document.querySelector('#results-div').innerHTML += ""
+
                 document.querySelector('#results-div').innerHTML += `
                     <div class="column is-one-quarter">
                         <div class="card" id="result-card">
