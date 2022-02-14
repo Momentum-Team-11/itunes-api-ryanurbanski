@@ -6,9 +6,6 @@ const audioPreviewUrl = ""
 
 form.addEventListener("submit", function (event) {
     event.preventDefault()
-
-    
-    
     console.log('Button was clicked!')
     console.log('The value of event.target is: ', event.target)
     
@@ -17,24 +14,35 @@ form.addEventListener("submit", function (event) {
     document.getElementById("resultsHeaderLabel").innerHTML = "Search Results for: '" + searchString + "' ";
 
     const formData = new FormData(event.target)
-    console.log(formData);
+    console.log("The value of formData is: ", formData);
     const asString = new URLSearchParams(formData).toString('');
     console.log(asString)
     let url = (`https://proxy-itunes-api.glitch.me/search?${asString}&entity=song&limit=20`)
 
-                // Clear previous results
-                document.querySelector('#results-div').innerHTML = ""
+    // Clear previous results
+    document.querySelector('#results-div').innerHTML = ""
 
+    // // async fetch 
+    // let promise = fetch(url)
+    // let response = await promise
+    
+    // //Handle errors
+    // if (response.ok){                                   // If response is in 200's
+    //     let json = await response.json()
+    // } else {
+    //     alert("HTTP Error: " + response.status)
+    // }
+
+    // // Return results to HTML
+    // let data = await response
 
     fetch(url)
-        .then((response) => response.json())
-        // .then(function (response) {
-        //     console.log(response)
-        //     return response.json()
-        // })
-        .then(function (data) {
+        .then((response) => {
+            console.log(response);
+            return response.json()
+        })
+        .then((data) => {
             console.log(data)
-
             for (let i = 0; i < data.results.length; i++) {
                 document.querySelector('#results-div').innerHTML += `
                     <div class="column is-one-quarter">
@@ -72,16 +80,17 @@ resultContainer.addEventListener("click", function(event) {
     let url = (`https://proxy-itunes-api.glitch.me/lookup?id=${songId}`)
 
     fetch(url)
-        .then(function (response) {
+        .then((response) => {
             return response.json()
         })
-        .then(function (data) {
+        .then((data) => {
             let artistName = data.results[0].artistName
             let songName = data.results[0].trackName
 
             if(event.target.tagName === 'A') {
                 console.log("The link to play was clicked.")
                 document.getElementById("player").src = event.target.href
+                document.getElementById("now-playing").innerHTML = ""
                 document.getElementById("now-playing").innerHTML += `
                     <strong>${songName}</strong>
                     <text> - ${artistName}</text>
@@ -89,5 +98,38 @@ resultContainer.addEventListener("click", function(event) {
             }
         })
 })
+
+
+
+// // Simple function definition
+// function add(a,b) {
+//     return a + b
+// }
+
+// // Another function definition
+// let add = function(a,b) {
+//     return a + b
+// }
+
+// // Arrow function definition
+// let add = (a,b) => {
+//     return a + b
+// }
+
+// // Arrow function if there is only a single return line
+// let add = (a,b) => a + b
+
+// ------------------------------------------------------------------------------
+// Basic fetch
+// .then()
+
+
+
+
+
+
+
+
+
 
 // https://itunes.apple.com/seartch?term=jack+johnson&limit=1
