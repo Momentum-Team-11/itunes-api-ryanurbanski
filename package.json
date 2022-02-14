@@ -1,9 +1,12 @@
 {
-  "private": true,
-  "scripts": {
-    "start": "live-server"
-  },
-  "devDependencies": {
-    "live-server": "^1.2.1"
-  }
+    "private": true,
+    "scripts": {
+        "start": "live-server"
+    },
+    "devDependencies": {
+        "live-server": "^1.2.1"
+    },
+    "dependencies": {
+        "bulma": "^0.9.3"
+    }
 }
