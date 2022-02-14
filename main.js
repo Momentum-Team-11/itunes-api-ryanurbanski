@@ -6,36 +6,18 @@ const audioPreviewUrl = ""
 
 form.addEventListener("submit", function (event) {
     event.preventDefault()
-    console.log('Button was clicked!')
-    console.log('The value of event.target is: ', event.target)
-    
-    const searchString = document.getElementById("searchBox").value
-    console.log(searchString);
-    document.getElementById("resultsHeaderLabel").innerHTML = "Search Results for: '" + searchString + "' ";
 
+    // Search
+    const searchString = document.getElementById("searchBox").value
+    document.getElementById("resultsHeaderLabel").innerHTML = "Search Results for: '" + searchString + "' ";
     const formData = new FormData(event.target)
-    console.log("The value of formData is: ", formData);
     const asString = new URLSearchParams(formData).toString('');
-    console.log(asString)
     let url = (`https://proxy-itunes-api.glitch.me/search?${asString}&entity=song&limit=20`)
 
-    // Clear previous results
+    // Clear Results
     document.querySelector('#results-div').innerHTML = ""
 
-    // // async fetch 
-    // let promise = fetch(url)
-    // let response = await promise
-    
-    // //Handle errors
-    // if (response.ok){                                   // If response is in 200's
-    //     let json = await response.json()
-    // } else {
-    //     alert("HTTP Error: " + response.status)
-    // }
-
-    // // Return results to HTML
-    // let data = await response
-
+    // Retrieve and Print Results
     fetch(url)
         .then((response) => {
             console.log(response);
@@ -68,11 +50,11 @@ form.addEventListener("submit", function (event) {
             }
         })
         
-        // Reset the form for the next search
+        // Reset form for next search
         form.reset()
 })
 
-
+// Play Preview
 resultContainer.addEventListener("click", function(event) {
     event.preventDefault()
 
